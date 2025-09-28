@@ -1,25 +1,38 @@
-# --- user configuration -------------------------------------------------------
+# --- set config home variable -------------------------------------------------
+
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+
+# --- history configuration ----------------------------------------------------
 
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# --- enable emacs keybindings -------------------------------------------------
 
-# You may need to manually set your language environment
+bindkey -e
+
+# --- search command history by typing the initial letters ---------------------
+
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
+
+# --- set language environment -------------------------------------------------
+
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
+# --- preferred editor for local and remote sessions ---------------------------
+
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
 #   export EDITOR='mvim'
 # fi
 export EDITOR='nvim'
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # --- fzf support --------------------------------------------------------------
 
@@ -77,16 +90,6 @@ ex()
         echo "'$1' is not a valid file"
     fi
 }
-
-# --- set config home variable -------------------------------------------------
-
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
-
-# --- custom env variables -----------------------------------------------------
-
-if [ -f $XDG_CONFIG_HOME/zsh/custom-env.zsh ]; then
-    source $XDG_CONFIG_HOME/zsh/custom-env.zsh
-fi
 
 # --- zsh autosuggestions ------------------------------------------------------
 
@@ -147,6 +150,12 @@ psf() {
 
 # sorted disk usage
 alias dumb='du -shx * | sort -rhk1'
+
+# --- custom env variables -----------------------------------------------------
+
+if [ -f $XDG_CONFIG_HOME/zsh/custom-env.zsh ]; then
+    source $XDG_CONFIG_HOME/zsh/custom-env.zsh
+fi
 
 # --- starship prompt configuration --------------------------------------------
 
