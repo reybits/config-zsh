@@ -103,6 +103,11 @@ if [ -f $XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highligh
     source $XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# --- git completion -----------------------------------------------------------
+
+autoload -Uz compinit
+compinit
+
 # --- pass completion ----------------------------------------------------------
 
 # if [ -f $XDG_CONFIG_HOME/zsh/completions/pass-completion.zsh ]; then
