@@ -109,8 +109,11 @@ fi
 
 # --- git completion -----------------------------------------------------------
 
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
+
+# --- enable menu selection ----------------------------------------------------
+
+zstyle ':completion:*' menu select
 
 # --- pass completion ----------------------------------------------------------
 
