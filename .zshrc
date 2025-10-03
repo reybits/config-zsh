@@ -37,6 +37,7 @@ bindkey '^[[B' history-beginning-search-forward
 #   export EDITOR='mvim'
 # fi
 export EDITOR='nvim'
+export VISUAL='nvim'
 
 # --- fzf support --------------------------------------------------------------
 
