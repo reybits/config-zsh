@@ -181,5 +181,9 @@ fi
 
 # --- starship prompt configuration --------------------------------------------
 
-export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
-eval "$(starship init zsh)"
+if command -v starship &> /dev/null ; then
+    export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+    eval "$(starship init zsh)"
+else
+    echo "Install starship to enable prompt."
+fi
