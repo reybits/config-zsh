@@ -136,8 +136,11 @@ fi
 
 # --- open / attach tmux session with fzf --------------------------------------
 
-# bindkey -s ^f "~/.config/tmux/bin/tmux-sessionizer\n"
-alias ts="~/.config/tmux/bin/tmux-sessionizer"
+ts() {
+  ~/.config/tmux/bin/tmux-sessionizer
+}
+zle -N ts
+bindkey '^f' ts
 
 # --- aliases ------------------------------------------------------------------
 
