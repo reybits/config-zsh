@@ -161,6 +161,22 @@ psf() {
         --bind 'ctrl-y:reload(kill {2} || ps -Ar -o user,pid,ppid,start,time,command)'
 }
 
+# --- better man page viewing --------------------------------------------------
+
+# colorize output using default pager
+# man() {
+#     LESS_TERMCAP_md=$'\e[01;31m' \
+#     LESS_TERMCAP_me=$'\e[0m' \
+#     LESS_TERMCAP_se=$'\e[0m' \
+#     LESS_TERMCAP_so=$'\e[01;44;33m' \
+#     LESS_TERMCAP_ue=$'\e[0m' \
+#     LESS_TERMCAP_us=$'\e[01;32m' \
+#     command man "$@"
+# }
+
+# use nvim as pager for man pages
+export MANPAGER="sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -\""
+
 # --- rest of aliases ----------------------------------------------------------
 
 alias ls='ls --color=auto'
