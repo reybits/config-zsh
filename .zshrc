@@ -131,7 +131,7 @@ fi
 
 if command -v zoxide &> /dev/null ; then
     eval "$(zoxide init zsh)"
-    alias cd="z"
+    alias cd='z'
 fi
 
 # --- open / attach tmux session with fzf --------------------------------------
@@ -142,12 +142,9 @@ ts() {
 zle -N ts
 bindkey '^f' ts
 
-# --- aliases ------------------------------------------------------------------
+# --- convienient process searching and killing --------------------------------
 
-alias la="ls -la"
-alias n="nvim"
-
-alias psg="ps aux | grep -v grep | grep"
+alias psg='ps aux | grep -v grep | grep'
 
 psf() {
     ps -Ar -o user,pid,ppid,start,time,command | fzf --query=$@ \
@@ -159,6 +156,15 @@ psf() {
         --bind 'ctrl-r:reload(ps -Ar -o user,pid,ppid,start,time,command)' \
         --bind 'ctrl-y:reload(kill {2} || ps -Ar -o user,pid,ppid,start,time,command)'
 }
+
+# --- rest of aliases ----------------------------------------------------------
+
+alias ls='ls --color=auto'
+alias la='ls -lathr --color=auto'
+
+alias n='nvim'
+
+alias e='exit'
 
 # sorted disk usage
 alias dumb='du -shx * | sort -rhk1'
