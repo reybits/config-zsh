@@ -4,10 +4,14 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
 # --- history configuration ----------------------------------------------------
 
-setopt APPEND_HISTORY
-setopt EXTENDED_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_SAVE_NO_DUPS
+export HISTSIZE=10000       # number of commands to remember in the command history
+export SAVEHIST=10000       # number of history entries to save to the history file
+
+setopt APPEND_HISTORY       # append to the history file, don't overwrite it
+setopt INC_APPEND_HISTORY   # write each command to the history file as soon as it is entered
+setopt EXTENDED_HISTORY     # save timestamp of each command in history file
+setopt HIST_IGNORE_ALL_DUPS # remove older duplicate entries from history
+setopt HIST_IGNORE_SPACE    # ignore commands that start with space
 
 # --- enable emacs keybindings -------------------------------------------------
 
