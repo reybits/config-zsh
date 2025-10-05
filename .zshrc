@@ -140,11 +140,15 @@ fi
 
 # --- open / attach tmux session with fzf --------------------------------------
 
-ts() {
-  ~/.config/tmux/bin/tmux-sessionizer
-}
+if [ -d $XDG_CONFIG_HOME/tmux/bin ]; then
+    export PATH="$PATH:$XDG_CONFIG_HOME/tmux/bin"
+
+    ts() {
+        $XDG_CONFIG_HOME/tmux/bin/tmux-sessionizer
+    }
 zle -N ts
 bindkey '^f' ts
+fi
 
 # --- convienient process searching and killing --------------------------------
 
