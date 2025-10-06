@@ -1,5 +1,9 @@
 # ZSH Plugins
 
+A streamlined and customizable ZSH configuration for enhanced terminal productivity.
+
+![ZSH](https://github.com/reybits/config-zsh/blob/master/zsh.png?raw=true)
+
 ## Installation
 
 Install the following plugins by cloning their repositories into the `~/.config/zsh/plugins` directory.
