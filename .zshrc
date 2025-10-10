@@ -199,7 +199,8 @@ export MANPAGER="sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu' -c
 # --- rest of aliases ----------------------------------------------------------
 
 alias ls='ls --color=auto'
-alias la='ls -lathr --color=auto'
+# alias la='ls -lathr --color=auto'
+alias la='ls -lahIF --color=auto'
 
 alias n='nvim'
 
