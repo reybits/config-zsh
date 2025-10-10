@@ -25,6 +25,8 @@ bindkey '^N' history-beginning-search-forward
 bindkey '^[[A' history-beginning-search-backward
 bindkey '^[[B' history-beginning-search-forward
 
+bindkey '^[[3~' delete-char
+
 # --- set language environment -------------------------------------------------
 
 # export LANG=en_US.UTF-8
