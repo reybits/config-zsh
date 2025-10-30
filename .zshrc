@@ -13,19 +13,51 @@ setopt EXTENDED_HISTORY     # save timestamp of each command in history file
 setopt HIST_IGNORE_ALL_DUPS # remove older duplicate entries from history
 setopt HIST_IGNORE_SPACE    # ignore commands that start with space
 
-# --- enable emacs keybindings -------------------------------------------------
+# --- switch to emacs keybindings ----------------------------------------------
 
-bindkey -e
+switch_to_emacs_mode() {
+    bindkey -e
 
-# --- search command history by typing the initial letters ---------------------
+    # --- search command history by typing the initial letters
 
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
+    bindkey '^P' history-beginning-search-backward
+    bindkey '^N' history-beginning-search-forward
 
-bindkey '^[[A' history-beginning-search-backward
-bindkey '^[[B' history-beginning-search-forward
+    bindkey '^[[A' history-beginning-search-backward
+    bindkey '^[[B' history-beginning-search-forward
 
-bindkey '^[[3~' delete-char
+    bindkey '^[[3~' delete-char
+}
+
+# --- switch to vi keybindings -------------------------------------------------
+
+switch_to_vi_mode() {
+    bindkey -v
+    autoload edit-command-line
+    zle -N edit-command-line
+    bindkey -M vicmd v edit-command-line
+
+    export VI_MODE_SET_CURSOR=true
+
+    function zle-keymap-select {
+        if [[ $KEYMAP == vicmd ]] ; then
+            echo -ne '\e[2 q'  # block cursor
+        else
+            echo -ne '\e[6 q'  # beam cursor
+        fi
+    }
+    zle -N zle-keymap-select
+
+    function zle-line-init {
+        zle -K viins
+        echo -ne '\e[6 q'  # beam cursor
+    }
+    zle -N zle-line-init
+}
+
+# --- enable emacs keybindings by default --------------------------------------
+
+switch_to_emacs_mode
 
 # --- set language environment -------------------------------------------------
 
