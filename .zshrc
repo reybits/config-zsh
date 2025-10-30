@@ -177,24 +177,23 @@ fi
 if [ -d $XDG_CONFIG_HOME/tmux/bin ]; then
     export PATH="$PATH:$XDG_CONFIG_HOME/tmux/bin"
 
-    # -- as zsh widget
-
     # used as zsh widget and alias
     ts() {
         $XDG_CONFIG_HOME/tmux/bin/tmux-sessionizer
     }
 
-    # register ts function as zsh widget
-    zle -N ts
+    # -- register ts as zsh widget
+    register_as_widget() {
+        zle -N ts
+        # bind ts function to ctrl-f
+        # does not work outside of tmux due to 'open terminal failed: not a terminal'
+        bindkey '^f' ts
+    }
 
-    # bind ts function to ctrl-f
-    # does not work outside of tmux due to 'open terminal failed: not a terminal'
-    bindkey '^f' ts
-
-    # -- as keystoroke emulation
-
-    # bindkey -s '^f' 'tmux-sessionizer\n'
-    # alias ts=tmux-sessionizer
+    # -- register ts as keystoroke emulation
+    register_as_alias() {
+        bindkey -s '^f' 'ts\n'
+    }
 fi
 
 # --- convienient process searching and killing --------------------------------
