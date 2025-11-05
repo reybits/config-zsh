@@ -4,6 +4,7 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
 # --- history configuration ----------------------------------------------------
 
+export HISTFILE=~/.zsh_history
 export HISTSIZE=10000       # number of commands to remember in the command history
 export SAVEHIST=10000       # number of history entries to save to the history file
 
