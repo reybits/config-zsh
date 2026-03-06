@@ -18,13 +18,9 @@ setopt EXTENDED_HISTORY     # save timestamp of each command in history file
 setopt HIST_IGNORE_ALL_DUPS # remove older duplicate entries from history
 setopt HIST_IGNORE_SPACE    # ignore commands that start with space
 
-# --- switch to emacs keybindings ----------------------------------------------
+# --- search command history by typing the initial letters
 
-switch_to_emacs_mode() {
-    bindkey -e
-
-    # --- search command history by typing the initial letters
-
+bindkeys() {
     bindkey '^P' history-beginning-search-backward
     bindkey '^N' history-beginning-search-forward
 
@@ -34,10 +30,21 @@ switch_to_emacs_mode() {
     bindkey '^[[3~' delete-char
 }
 
+# --- switch to emacs keybindings ----------------------------------------------
+
+switch_to_emacs_mode() {
+    bindkey -e
+
+    bindkeys
+}
+
 # --- switch to vi keybindings -------------------------------------------------
 
 switch_to_vi_mode() {
     bindkey -v
+
+    bindkeys
+
     autoload edit-command-line
     zle -N edit-command-line
     bindkey -M vicmd v edit-command-line
@@ -60,7 +67,7 @@ switch_to_vi_mode() {
     zle -N zle-line-init
 }
 
-# --- enable emacs keybindings by default --------------------------------------
+# --- enable vi keybindings by default -----------------------------------------
 
 switch_to_emacs_mode
 
