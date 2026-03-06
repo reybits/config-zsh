@@ -1,3 +1,7 @@
+# --- only source ~/.zshrc in interactive shells -------------------------------
+
+[[ $- != *i* ]] && return
+
 # --- set config home variable -------------------------------------------------
 
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
