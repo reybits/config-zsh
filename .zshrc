@@ -18,6 +18,8 @@ setopt EXTENDED_HISTORY     # save timestamp of each command in history file
 setopt HIST_IGNORE_ALL_DUPS # remove older duplicate entries from history
 setopt HIST_IGNORE_SPACE    # ignore commands that start with space
 
+export IGNOREEOF=9999       # prevent accidental exit by pressing Ctrl-D
+
 # --- search command history by typing the initial letters
 
 bindkeys() {
